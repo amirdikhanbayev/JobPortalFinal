@@ -6,7 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collation = "summary")
+@Document(collection = "summary")
 @Data
 public class Summary {
     @Id
