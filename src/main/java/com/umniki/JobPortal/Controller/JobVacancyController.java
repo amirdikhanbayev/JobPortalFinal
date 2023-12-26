@@ -17,21 +17,25 @@ public class JobVacancyController {
     private final JobVacancyService service;
 
     @GetMapping("/list-all")
+    @CrossOrigin(origins = "*")
     public List<JobVacancy> list(){
         return service.listAll();
     }
 
     @GetMapping("/find-by-desc/{desc}")
+    @CrossOrigin(origins = "*")
     public JobVacancy findByDescription(@PathVariable String desc){
         return service.findByDescription(desc);
     }
 
     @DeleteMapping("/delete/{id}")
+    @CrossOrigin(origins = "*")
     public void delete(@PathVariable String id){
         service.deleteById(id);
     }
 
     @GetMapping("/find-by-id/{id}")
+    @CrossOrigin(origins = "*")
     public JobVacancy findById(@PathVariable String id){
         return service.findById(id);
     }
