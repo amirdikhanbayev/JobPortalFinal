@@ -2,6 +2,7 @@ package com.umniki.JobPortal.Security;
 
 import com.umniki.JobPortal.Utils.Jwt.JwtService;
 import com.umniki.JobPortal.Service.User.UserService;
+import com.umniki.JobPortal.Utils.Jwt.JwtServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,7 +24,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final JwtService jwtService;
+    private final JwtServiceImpl jwtService;
     private final UserService userService;
 
     @Override

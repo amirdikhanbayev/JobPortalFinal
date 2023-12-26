@@ -1,11 +1,13 @@
 package com.umniki.JobPortal.Utils.Jwt;
 
+import com.umniki.JobPortal.Service.User.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ import java.util.function.Function;
 
 @Service
 public class JwtServiceImpl implements JwtService {
+
     @Value("${token.signing.key}")
     private String jwtSigningKey;
     @Override
@@ -26,10 +29,7 @@ public class JwtServiceImpl implements JwtService {
 
     @Override
     public String generateAccessToken(UserDetails userDetails) {
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("userEmail",userDetails.getUsername());
-        map.put("role", userDetails.getAuthorities());
-        return generateAccessToken(map,userDetails);
+        return generateAccessToken(new HashMap<>(),userDetails);
     }
 
     @Override
@@ -38,17 +38,17 @@ public class JwtServiceImpl implements JwtService {
         return (userName.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
 
-    private <T> T extractClaim(String token, Function<Claims, T> claimsResolvers){
+    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
-        return claimsResolvers.apply(claims);
+        return claimsResolver.apply(claims);
     }
 
     private String generateAccessToken(HashMap<String, Object> extraClaims, UserDetails userDetails){
         return Jwts.builder()
+                .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
-                .setClaims(extraClaims)
+                .setExpiration(new Date(System.currentTimeMillis() + 1000000 * 60 * 24))
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }

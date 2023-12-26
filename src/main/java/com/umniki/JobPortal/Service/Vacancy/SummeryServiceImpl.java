@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class SummeryServiceImpl implements SummeryService {
-    private SummeryRepository summeryRepository;
+    private final SummeryRepository summeryRepository;
     @Override
     public List<Summary> listAll() {
         return summeryRepository.findAll();

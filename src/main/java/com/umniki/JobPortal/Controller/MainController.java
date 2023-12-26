@@ -29,7 +29,7 @@ public class MainController {
 
     @PutMapping("/add-request/{id}/{sumId}")
     public JobVacancy addRequest(@PathVariable String id, @PathVariable String sumId){
-        JobVacancy jobVacancy = jobVacancyService.findById(id).orElseThrow();
+        JobVacancy jobVacancy = jobVacancyService.findById(id) ;
         Summary summary = summeryService.findById(sumId).orElseThrow();
         jobVacancy.setRequests(summary);
         return jobVacancyService.createVacancy(jobVacancy);
@@ -44,7 +44,7 @@ public class MainController {
     @PatchMapping("/add-to-approved/{userId}/{vacancyId}")
     public User addToApproved(@PathVariable String userId, @PathVariable String vacancyId){
         User user = userService.findById(userId);
-        JobVacancy jobVacancy = jobVacancyService.findById(vacancyId).orElseThrow();
+        JobVacancy jobVacancy = jobVacancyService.findById(vacancyId);
         user.setJobVacancies(jobVacancy);
         return userService.save(user);
     }

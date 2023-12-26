@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface JobVacancyService {
     List<JobVacancy> listAll();
-    Optional<JobVacancy> findById(String id);
+    JobVacancy findById(String id);
     void deleteById(String id);
     JobVacancy findByDescription(String desc);
 

@@ -32,6 +32,6 @@ public class JobVacancyController {
 
     @GetMapping("/find-by-id/{id}")
     public JobVacancy findById(@PathVariable String id){
-        return service.findById(id).orElseThrow();
+        return service.findById(id);
     }
 }

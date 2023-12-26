@@ -4,6 +4,7 @@ import com.umniki.JobPortal.Entity.JobVacancy;
 import com.umniki.JobPortal.Repository.JobVacancyRepository;
 import com.umniki.JobPortal.Service.JobVacancy.JobVacancyService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,15 +14,15 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class JobVacancyServiceImpl implements JobVacancyService {
-    private JobVacancyRepository jobVacancyRepository;
+    private final JobVacancyRepository jobVacancyRepository;
     @Override
     public List<JobVacancy> listAll() {
         return jobVacancyRepository.findAll();
     }
 
     @Override
-    public Optional<JobVacancy> findById(String id) {
-        return Optional.of(jobVacancyRepository.findById(id).orElseThrow());
+    public JobVacancy findById(String id) {
+        return jobVacancyRepository.findById(id).orElseThrow(()-> new RuntimeException("Enitiy not dtrew"));
     }
 
     @Override
