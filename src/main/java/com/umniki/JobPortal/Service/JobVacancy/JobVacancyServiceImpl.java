@@ -22,7 +22,7 @@ public class JobVacancyServiceImpl implements JobVacancyService {
 
     @Override
     public JobVacancy findById(String id) {
-        return jobVacancyRepository.findById(id).orElseThrow(()-> new RuntimeException("Enitiy not dtrew"));
+        return jobVacancyRepository.findJobVacancyById(id).orElseThrow(()-> new RuntimeException("Enitiy not dtrew"));
     }
 
     @Override

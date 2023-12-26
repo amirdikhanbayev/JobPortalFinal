@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface JobVacancyRepository extends MongoRepository<JobVacancy,String> {
     Optional<JobVacancy> findJobVacancyByDescription(String desc);
+
+    Optional<JobVacancy> findJobVacancyById(String id);
 }

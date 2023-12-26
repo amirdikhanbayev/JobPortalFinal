@@ -5,6 +5,7 @@ import com.umniki.JobPortal.DTO.SummaryDto;
 import com.umniki.JobPortal.Entity.JobVacancy;
 import com.umniki.JobPortal.Entity.Summary;
 import com.umniki.JobPortal.Entity.User;
+import com.umniki.JobPortal.Repository.JobVacancyRepository;
 import com.umniki.JobPortal.Service.JobVacancy.JobVacancyService;
 import com.umniki.JobPortal.Service.User.UserService;
 import com.umniki.JobPortal.Service.Vacancy.SummeryService;
@@ -15,10 +16,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/main")
+@CrossOrigin(origins = "*")
 public class MainController {
     private final UserService userService;
     private final SummeryService summeryService;
     private final JobVacancyService jobVacancyService;
+    private final JobVacancyRepository jobVacancyRepository;
 
 
     @PostMapping("/create-vacancy")
