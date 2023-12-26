@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/summery")
+@CrossOrigin(origins = "*")
 public class SummaryController {
 
     private final SummeryService service;

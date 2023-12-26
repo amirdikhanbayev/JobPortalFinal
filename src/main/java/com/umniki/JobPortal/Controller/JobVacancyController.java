@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/vacancy")
+@CrossOrigin(origins = "*")
 public class JobVacancyController {
 
     private final JobVacancyService service;
